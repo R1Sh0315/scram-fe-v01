@@ -23,6 +23,8 @@
   "dependencies": {
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
-    "@mui/material": "^6.1.9"
+    "@mui/material": "^6.1.9",
+    "@reduxjs/toolkit": "^2.4.0",
+    "react-redux": "^9.1.2"
   }
 }
