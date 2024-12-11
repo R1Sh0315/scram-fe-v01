@@ -1,20 +1,35 @@
 import { useState } from "react";
+import { signinService } from "../../services/services";
 
 const SigninComponent: React.FC = () => {
   const [userDetails, setUserDetails] = useState({
-    name: "",
+    email: "",
     password: "",
   });
+  const [isBtnDisable, setBtnDisable] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const submitHandler = () => {
-    console.info(userDetails);
+  const submitHandler = async () => {
+    setLoading(true);
+    setBtnDisable(true);
+
+    const response = await signinService(userDetails);
+
+    setLoading(false);
+    setBtnDisable(false);
+
+    if (response) {
+      console.log("Signin successful:", response);
+    } else {
+      console.error("Signin failed");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserDetails((prev) => ({
       ...prev,
-      [name]: value, 
+      [name]: value,
     }));
   };
 
@@ -23,10 +38,10 @@ const SigninComponent: React.FC = () => {
       <h3>Signin</h3>
       <input
         type="text"
-        name="name"
-        value={userDetails.name}
+        name="email"
+        value={userDetails.email}
         onChange={handleChange}
-        placeholder="username"
+        placeholder="email"
       />
       <input
         type="password"
@@ -36,7 +51,9 @@ const SigninComponent: React.FC = () => {
         placeholder="password"
       />
 
-      <button onClick={() => submitHandler()}>Submit</button>
+      <button onClick={submitHandler} disabled={isBtnDisable || loading}>
+        {loading ? "Submit" : "Submit"}
+      </button>
     </>
   );
 };
