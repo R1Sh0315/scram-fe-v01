@@ -28,6 +28,11 @@ export const signinService = async (userDetails: IUserCredentials) => {
   }
 };
 
+export const logoutService = (): void => {
+  sessionStorage.removeItem("authToken");
+  localStorage.removeItem("authToken");
+};
+
 const storeTokenWithExpiration = (token: string, expirationMinutes = 60) => {
   const expirationTime = new Date().getTime() + expirationMinutes * 60 * 1000; // Expiration time in milliseconds
   const tokenData = {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { signinService } from "../../services/services";
+import { useNavigate } from "react-router-dom";
 
 const SigninComponent: React.FC = () => {
   const [userDetails, setUserDetails] = useState({
@@ -8,6 +9,7 @@ const SigninComponent: React.FC = () => {
   });
   const [isBtnDisable, setBtnDisable] = useState(false);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const submitHandler = async () => {
     setLoading(true);
@@ -18,7 +20,8 @@ const SigninComponent: React.FC = () => {
     setLoading(false);
     setBtnDisable(false);
 
-    if (response) {
+    if (response && response.token) {
+      navigate("/dashboard");
       console.log("Signin successful:", response);
     } else {
       console.error("Signin failed");

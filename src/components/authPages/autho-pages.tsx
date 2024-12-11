@@ -55,7 +55,7 @@ const AuthBtnGroupComponent: React.FC<AuthPageProps> = (props) => {
   );
 };
 
-const AuthPage = () => {
+const SignPage = () => {
   const [isSignUp, setSignUp] = useState(false);
 
   return (
@@ -82,4 +82,4 @@ const AuthPage = () => {
   );
 };
 
-export default AuthPage;
+export default SignPage;
