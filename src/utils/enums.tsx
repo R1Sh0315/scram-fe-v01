@@ -1,10 +1,10 @@
 // Define the base URL as a constant
-export const BASEURL = "https://trusting-dramatic-ampersand.vercel.app/api/v1/";
+export const BASEURL = import.meta.env.REACT_APP_BASE_URL || "http://localhost:3000/";
 
 // Enum to hold the API endpoints
 export enum SCRAMURLS {
-  SIGNIN = "signin",
-  SIGNUP = "signup",
+  SIGNIN = "api/v1/signin",
+  SIGNUP = "api/v1/signup",
 }
 
 // concatenate the BASEURL with the enum values as needed:

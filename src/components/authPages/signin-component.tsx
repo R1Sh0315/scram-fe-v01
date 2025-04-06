@@ -19,7 +19,7 @@ const SigninComponent: React.FC = () => {
 
     setLoading(false);
     setBtnDisable(false);
-
+    console.log("Signin successful:", response);
     if (response && response.token) {
       navigate("/dashboard");
       console.log("Signin successful:", response);
